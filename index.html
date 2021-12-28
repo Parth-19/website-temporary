@@ -478,9 +478,10 @@
 				<div class="counter_form">
 					<div class="row fill_height">
 						<div class="col fill_height">
-							<form
+							<form id="admissionForm" name="admissionForm"
 								class="counter_form_content d-flex flex-column align-items-center justify-content-center"
 								action="#">
+								<br><br>
 								<div class="counter_form_title">Get Free Consultation</div>
 								<input type="text" class="counter_input" placeholder="Your Name:" required="required">
 								<input type="tel" class="counter_input" placeholder="Phone:" required="required">
@@ -489,14 +490,15 @@
 									required="required">
 								<input type="text" class="counter_input" placeholder="Desired Course:"
 									required="required">
+								<input type="number" class="counter_input" placeholder="IELTS/PTE/TOEFL score (if any)">
 								<textarea class="counter_input counter_text_input" placeholder="Message:"
 									required="required"></textarea>
 								<button type="submit" class="counter_form_button">submit now</button>
+								<br>
 							</form>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 
@@ -719,6 +721,19 @@
 			</div>
 		</div>
 	</footer>
+
+
+	<script>
+		const scriptURL = 'https://script.google.com/macros/s/AKfycbwG-1LPWmVRobnyCzsN00qP3yO79r72GaerjY1prpcmQs51t7j4w-taBHesxM7kAOzS/exec'
+		const form = document.forms['admissionForm']
+		form.addEventListener('submit', e => {
+			e.preventDefault()
+			fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+				.then(response => alert("Thank you for showing interest! We will get back to you soon."))
+				.catch(error => console.error(error.message))
+			document.getElementById("admissionForm").reset();
+		});
+	</script>
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="styles/bootstrap4/popper.js"></script>
 	<script src="styles/bootstrap4/bootstrap.min.js"></script>
